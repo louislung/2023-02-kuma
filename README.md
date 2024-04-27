@@ -1,3 +1,27 @@
+# My learnings
+
+Setup
+1. found that foundry image has some issue with extension install in dev container, solution is to add following in devcontainer.json
+```
+"settings": {
+        "extensions.verifySignature": false
+      }
+```
+
+General learnings
+1. don't aim to understand all business logic at the begining, start from some important function (e.g. transfer, approve, etc), then think about some exteme cases that could happen (e.g. if transfer to zero address / if transfer to itself, etc)
+1.1 imporatant to show example and poc
+2. [M-02/KIB-02L/KFC-03L] a constraint implemented in 1 function, is it implemented in other function (e.g. addPayee doesn't allow duplicate payee, but does changePayee check that?)
+3. [M-03] for call to 3rd party, any validation missed (e.g. check updated_at for oracle)
+4. [M-04] some revert condition may not makes sense, may be those conditions are exterme cases, but not impossible
+5. [KIB-01L] does it use 3rdparty framework properly?, e.g. `OpenZeppelin _disableInitializers`
+6. 
+
+For the H-01 finding
+2. `forge test --debug "test_transfer" --no-match-test "test_transfer_|test_transferFrom" --match-contract My_KIBTokenTransfer`
+3. `forge test --match-contract My_KIBTokenTransfer` This test reproduce the high issue in code4arena
+
+
 # KUMA Protocol Versus contest details
 
 - Total Prize Pool: $38,600 USDC
